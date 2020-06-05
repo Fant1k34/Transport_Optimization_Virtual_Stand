@@ -11,8 +11,8 @@ public class Data {
     public ArrayList<Integer> B;
     public ArrayList<Integer> getA(){
         ArrayList<Integer> A = new ArrayList<Integer>();
-        A.add(250);
-        A.add(100);
+        A.add(60);
+        A.add(290);
         A.add(150);
         this.A = A;
         return A;
@@ -20,9 +20,9 @@ public class Data {
 
     public ArrayList<Integer> getB(){
         ArrayList<Integer> B = new ArrayList<Integer>();
-        B.add(240);
-        B.add(40);
-        B.add(220);
+        B.add(170);
+        B.add(260);
+        B.add(70);
         this.B = B;
         return B;
     }
@@ -40,9 +40,9 @@ public class Data {
 //    }
 
     public ArrayList<ArrayList<Integer>> getCosts(){
-        ArrayList<Integer> line1 = new ArrayList<>(Arrays.asList(9, 26, 20));
-        ArrayList<Integer> line2 = new ArrayList<>(Arrays.asList(3, 14, 5));
-        ArrayList<Integer> line3 = new ArrayList<>(Arrays.asList(11, 24, 17));
+        ArrayList<Integer> line1 = new ArrayList<>(Arrays.asList(14, 6, 3));
+        ArrayList<Integer> line2 = new ArrayList<>(Arrays.asList(17, 11, 20));
+        ArrayList<Integer> line3 = new ArrayList<>(Arrays.asList(26, 24, 8));
         ArrayList<ArrayList<Integer>> costs = new ArrayList<>(Arrays.asList(line1, line2, line3));
         return costs;
     }

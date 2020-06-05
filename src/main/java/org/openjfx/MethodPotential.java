@@ -1,9 +1,7 @@
 package org.openjfx;
 
-import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class MethodPotential {
@@ -11,12 +9,7 @@ public class MethodPotential {
     public ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
     public ArrayList<Integer> U = new ArrayList<>();
     public ArrayList<Integer> V = new ArrayList<>();
-    public ArrayList<Integer> spi = new ArrayList<>();
-    public ArrayList<Integer> spj = new ArrayList<>();
-    public int MegaMaxI;
-    public int MegaMaxJ;
-    public int imax;
-    public int jmax;
+
 
     public MethodPotential(ArrayList<ArrayList<Integer>> primaryPlan, ArrayList<ArrayList<Integer>> primaryMatrix){
         // Подготавливаем элементы, с которыми будем работать
@@ -32,6 +25,7 @@ public class MethodPotential {
         }
     }
 
+    // Прошлый метод для подсчёта потенциалов
     public boolean tryToCountThePotential(){
         int uSt = 0;
         int vSt = 0;
@@ -196,7 +190,6 @@ public class MethodPotential {
 
     public boolean findCircle(){
         // Метод позволяет найти контур
-        // TODO
         int ii, jj;
         ii = findMax().get(0);
         jj = findMax().get(1);
@@ -207,18 +200,30 @@ public class MethodPotential {
         // НАЧИНАЕМ ВСЕГДА С startPointV !!!!!!!!!!
         used.add(startPointV);
         extend();
+        used.clear();
         plan.get(ii).set(jj, 0);
         System.out.println(answer);
         return true;
     }
 
 
-
+    public int countCostsForPlan(){
+        int sum = 0;
+        for (int i = 0; i < plan.size(); i++){
+            for (int j = 0; j < plan.get(0).size(); j++){
+                sum += plan.get(i).get(j) * matrix.get(i).get(j);
+            }
+        }
+        return sum;
+    }
 
 
 
 
     public ArrayList<ArrayList<Integer>> getOptimizedSolution(){
+        // Сейчас посчитаем стоимость перевозок для неоптимизированного плана
+        int startCosts = countCostsForPlan();
+
         U.add(0);
         for (int i = 0; i < this.plan.size() - 1; i++){
             U.add(null);
@@ -233,11 +238,11 @@ public class MethodPotential {
         int amountTryies = 0;
         tryToFindPotentialsByMyNewOptimizedMethod();
         while (!this.isOptimized(U, V) && amountTryies < 4){
-            System.out.println(this.isOptimized(U, V));
             amountTryies++;
             findCircle();
             ArrayList<Integer> x = new ArrayList<>();
             ArrayList<Integer> y = new ArrayList<>();
+            System.out.println("Потенциалы: ");
             System.out.println(U);
             System.out.println(V);
 
@@ -265,6 +270,8 @@ public class MethodPotential {
                 }
             }
             // Выполняем перераспределение поставок(товаров)
+            System.out.println("--- (До перераспределения)");
+            System.out.println(plan);
             for (int i = 0; i < x.size(); i++){
                 if (i % 2 == 0){
                     plan.get(y.get(i)).set(x.get(i), plan.get(y.get(i)).get(x.get(i)) - minimum);
@@ -272,38 +279,35 @@ public class MethodPotential {
                 else {
                     plan.get(y.get(i)).set(x.get(i), plan.get(y.get(i)).get(x.get(i)) + minimum);
                 }
+                System.out.println(plan);
             }
             if (!tryToFindPotentialsByMyNewOptimizedMethod()) break;
-            System.out.println(U);
-            System.out.println(V);
-            System.out.println(isOptimized(U, V));
         }
 
+        // Посчитаем стоимости после перевозок
+        int finalCosts = countCostsForPlan();
+
+        System.out.println("Оптимизированный план");
         System.out.println(plan);
         System.out.println("Итоговые потенциалы");
         System.out.println(U);
         System.out.println(V);
+        System.out.println("Начальная стоимость - " + startCosts);
+        System.out.println("Конечная стоимость - " + finalCosts);
         return null;
     }
 
 
 
     private boolean isOptimized(ArrayList<Integer> U, ArrayList<Integer> V){
-        boolean answer = true;
-        int z = 0;
         for (int i = 0; i < U.size(); i++){
             for (int j = 0; j < V.size(); j++){
-                if (U.get(i) + V.get(j) > this.matrix.get(i).get(j) && this.plan.get(i).get(j) == 0){
-                    answer = false;
-                    if (U.get(i) + V.get(j) - this.matrix.get(i).get(j) > z){
-                        z = U.get(i) + V.get(j) - this.matrix.get(i).get(j);
-                        this.imax = i;
-                        this.jmax = j;
-                    }
+                if (U.get(i) + V.get(j) > this.matrix.get(i).get(j) && this.plan.get(i).get(j) == 0) {
+                    return false;
                 }
             }
         }
-        return answer;
+        return true;
     }
 
 

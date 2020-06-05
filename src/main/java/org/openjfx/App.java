@@ -40,9 +40,9 @@ public class App extends Application {
         plan.getSolutionMatrix();
 
         ArrayList<ArrayList<Integer>> ultra = new ArrayList<>();
-        ultra.add(new ArrayList<>(Arrays.asList(240, 30, 0)));
-        ultra.add(new ArrayList<>(Arrays.asList(40, 0, 0)));
-        ultra.add(new ArrayList<>(Arrays.asList(0, 70, 150)));
+        ultra.add(new ArrayList<>(Arrays.asList(0, 20, 150)));
+        ultra.add(new ArrayList<>(Arrays.asList(0, 260, 0)));
+        ultra.add(new ArrayList<>(Arrays.asList(60, 10, 0)));
 
         MethodPotential method = new MethodPotential(ultra, costs);
         method.getOptimizedSolution();
