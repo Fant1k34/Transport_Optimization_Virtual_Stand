@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javafx.fxml.FXMLLoader;
 
@@ -39,25 +38,25 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        Data getItems = new Data();
-        ArrayList<Integer> A = getItems.getA();
-        ArrayList<Integer> B = getItems.getB();
-        ArrayList<ArrayList<Integer>> costs = getItems.getCosts();
-
-        NorthWestPlan plan = new NorthWestPlan(A, B, costs);
-        MinimalCostPlan newplan = new MinimalCostPlan(A, B, costs);
-        System.out.println(plan.getPlan());
-        newplan.getPlan();
-        plan.getSolutionPlan();
-        plan.getSolutionMatrix();
-
-        ArrayList<ArrayList<Integer>> ultra = new ArrayList<>();
-        ultra.add(new ArrayList<>(Arrays.asList(0, 40, 80, 0)));
-        ultra.add(new ArrayList<>(Arrays.asList(50, 0, 150, 0)));
-        ultra.add(new ArrayList<>(Arrays.asList(0, 10, 0, 170)));
-
-        MethodPotential method = new MethodPotential(ultra, costs);
-        method.getOptimizedSolution();
+//        Data getItems = new Data();
+//        ArrayList<Integer> A = getItems.getA();
+//        ArrayList<Integer> B = getItems.getB();
+//        ArrayList<ArrayList<Integer>> costs = getItems.getCosts();
+//
+//        NorthWestPlan plan = new NorthWestPlan(A, B, costs);
+//        MinimalCostPlan newplan = new MinimalCostPlan(A, B, costs);
+//        System.out.println(plan.getPlan());
+//        newplan.getPlan();
+//        plan.getSolutionPlan();
+//        plan.getSolutionMatrix();
+//
+//        ArrayList<ArrayList<Integer>> ultra = new ArrayList<>();
+//        ultra.add(new ArrayList<>(Arrays.asList(0, 40, 80, 0)));
+//        ultra.add(new ArrayList<>(Arrays.asList(50, 0, 150, 0)));
+//        ultra.add(new ArrayList<>(Arrays.asList(0, 10, 0, 170)));
+//
+//        MethodPotential method = new MethodPotential(ultra, costs);
+//        method.getOptimizedSolution();
 //
 //        HashMap<Integer, Integer> map = new HashMap<>();
 //        map.put(0, 0);
@@ -67,7 +66,28 @@ public class App extends Application {
 
     }
 
-    public void moveOn() throws IOException {
+    public void moveOn(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts) throws IOException {
+
+        Data getItems = new Data();
+        ArrayList<Integer> A = getItems.getA();
+        ArrayList<Integer> B = getItems.getB();
+        ArrayList<ArrayList<Integer>> costs = getItems.getCosts();
+
+//        NorthWestPlan plan = new NorthWestPlan(A, B, costs);
+//        MinimalCostPlan newplan = new MinimalCostPlan(A, B, costs);
+//        System.out.println(plan.getPlan());
+//        newplan.getPlan();
+//        plan.getSolutionPlan();
+//        plan.getSolutionMatrix();
+
+        MethodPotential method = new MethodPotential(StartPlan, StartCosts);
+        method.getOptimizedSolution();
+
+
+
+
+
+
         Stage stage = new Stage();
 
         FXMLLoader loader = new FXMLLoader();

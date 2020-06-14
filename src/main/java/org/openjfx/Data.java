@@ -7,24 +7,36 @@ This class let you get A - buyers, B - providers and the costs matrix
  */
 
 public class Data {
-    public ArrayList<Integer> A;
-    public ArrayList<Integer> B;
+    public ArrayList<Integer> A = new ArrayList<>();
+    public ArrayList<Integer> B = new ArrayList<>();
+    public ArrayList<ArrayList<Integer>> costs = new ArrayList<>();
+
+    public void Data(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts){
+        for (int j = 0; j < StartPlan.get(0).size(); j++){
+            int sum = 0;
+            for (int i = 0; i < StartPlan.size(); i++){
+                sum += StartPlan.get(i).get(j);
+            }
+            this.A.add(sum);
+        }
+
+        for (int j = 0; j < StartPlan.size(); j++) {
+            int sum = 0;
+            for (int i = 0; i < StartPlan.get(0).size(); i++) {
+                sum += StartPlan.get(j).get(i);
+            }
+            this.B.add(sum);
+        }
+        this.costs = StartCosts;
+
+    }
+
+
     public ArrayList<Integer> getA(){
-        ArrayList<Integer> A = new ArrayList<Integer>();
-        A.add(50);
-        A.add(50);
-        A.add(230);
-        A.add(170);
-        this.A = A;
         return A;
     }
 
     public ArrayList<Integer> getB(){
-        ArrayList<Integer> B = new ArrayList<Integer>();
-        B.add(120);
-        B.add(200);
-        B.add(180);
-        this.B = B;
         return B;
     }
 
@@ -41,10 +53,6 @@ public class Data {
 //    }
 
     public ArrayList<ArrayList<Integer>> getCosts(){
-        ArrayList<Integer> line1 = new ArrayList<>(Arrays.asList(20, 27, 24, 12));
-        ArrayList<Integer> line2 = new ArrayList<>(Arrays.asList(3, 32, 15, 18));
-        ArrayList<Integer> line3 = new ArrayList<>(Arrays.asList(6, 30, 35, 8));
-        ArrayList<ArrayList<Integer>> costs = new ArrayList<>(Arrays.asList(line1, line2, line3));
         return costs;
     }
 
