@@ -29,15 +29,13 @@ public class App extends Application {
 //        stage.getIcons().add(image);
 
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+        URL xmlUrl = getClass().getResource("/startScene.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
-        loader.setController(new MainSceneController());
+
 
         stage.setScene(new Scene(root));
         stage.show();
-
-
     }
 
     public static void main(String[] args) {
@@ -66,6 +64,22 @@ public class App extends Application {
 //        map.put(1, 1);
 
         launch();
+
+    }
+
+    public void moveOn() throws IOException {
+        Stage stage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = null;
+        root = loader.load();
+
+
+
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 
