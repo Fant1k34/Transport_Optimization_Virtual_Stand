@@ -1,13 +1,17 @@
 package org.openjfx;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javafx.fxml.FXMLLoader;
+
 
 
 /**
@@ -16,14 +20,24 @@ import java.util.Arrays;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+    public void start(Stage stage) throws IOException {
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
+        stage.setTitle("Method of potentials");
+
+//        InputStream iconStream = getClass().getResourceAsStream("/icon.png");
+//        Image image = new Image(iconStream);
+//        stage.getIcons().add(image);
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+        loader.setController(new MainSceneController());
+
+        stage.setScene(new Scene(root));
         stage.show();
+
+
     }
 
     public static void main(String[] args) {
@@ -40,9 +54,9 @@ public class App extends Application {
         plan.getSolutionMatrix();
 
         ArrayList<ArrayList<Integer>> ultra = new ArrayList<>();
-        ultra.add(new ArrayList<>(Arrays.asList(0, 20, 150)));
-        ultra.add(new ArrayList<>(Arrays.asList(0, 260, 0)));
-        ultra.add(new ArrayList<>(Arrays.asList(60, 10, 0)));
+        ultra.add(new ArrayList<>(Arrays.asList(0, 40, 80, 0)));
+        ultra.add(new ArrayList<>(Arrays.asList(50, 0, 150, 0)));
+        ultra.add(new ArrayList<>(Arrays.asList(0, 10, 0, 170)));
 
         MethodPotential method = new MethodPotential(ultra, costs);
         method.getOptimizedSolution();
