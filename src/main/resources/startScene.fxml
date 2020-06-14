@@ -18,11 +18,11 @@
       <Label layoutX="178.0" layoutY="82.0" text="Введи табличку для матриц стоимости. Разделитель столбцов - пробел, для строк - enter" />
       <TextArea id="costs" fx:id="costs" layoutX="430.0" layoutY="110.0" prefHeight="330.0" prefWidth="404.0" text="Матрица стоимостей" />
       <Button id="optimizedButton" fx:id="optimizedButton" layoutX="296.0" layoutY="449.0" mnemonicParsing="false" onAction="#getOptimizedSolutionFromThePlan" prefHeight="26.0" prefWidth="254.0" text="Получить решение для оптимизации" />
-      <TextField layoutX="100.0" layoutY="511.0" prefHeight="26.0" prefWidth="312.0" />
-      <TextField layoutX="515.0" layoutY="511.0" prefHeight="26.0" prefWidth="318.0" />
-      <Label layoutX="14.0" layoutY="511.0" prefHeight="26.0" prefWidth="83.0" text="Поставщики A" />
-      <Label layoutX="424.0" layoutY="511.0" prefHeight="26.0" prefWidth="83.0" text="Потребители B" />
-      <Button layoutX="51.0" layoutY="544.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="312.0" text="Получить решение методом северо-западного угла" />
-      <Button layoutX="466.0" layoutY="544.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="318.0" text="Получить решение методом минимальной стоимости" />
+      <TextField id="consumers" fx:id="consumers" layoutX="107.0" layoutY="511.0" prefHeight="26.0" prefWidth="306.0" />
+      <TextField id="providers" fx:id="providers" layoutX="507.0" layoutY="511.0" prefHeight="26.0" prefWidth="326.0" />
+      <Label layoutX="14.0" layoutY="511.0" prefHeight="26.0" prefWidth="90.0" text="Потребители A" />
+      <Label layoutX="424.0" layoutY="511.0" prefHeight="26.0" prefWidth="83.0" text="Поставщики B" />
+      <Button id="northWestPlan" fx:id="northWestPlan" layoutX="51.0" layoutY="544.0" mnemonicParsing="false" onAction="#getNorthWestPlan" prefHeight="26.0" prefWidth="312.0" text="Получить решение методом северо-западного угла" />
+      <Button id="minimalCosts" fx:id="minimalCosts" layoutX="466.0" layoutY="544.0" mnemonicParsing="false" onAction="#getMinimalCosts" prefHeight="26.0" prefWidth="318.0" text="Получить решение методом минимальной стоимости" />
    </children>
 </AnchorPane>

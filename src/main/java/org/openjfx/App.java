@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 
 
-
 /**
  * JavaFX App
  */
@@ -84,10 +83,6 @@ public class App extends Application {
         method.getOptimizedSolution();
 
 
-
-
-
-
         Stage stage = new Stage();
 
         FXMLLoader loader = new FXMLLoader();
@@ -95,7 +90,6 @@ public class App extends Application {
         loader.setLocation(xmlUrl);
         Parent root = null;
         root = loader.load();
-
 
 
         stage.setScene(new Scene(root));
