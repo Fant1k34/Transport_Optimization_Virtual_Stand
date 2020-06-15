@@ -103,7 +103,7 @@ public class StartSceneController {
         infoLine.setTextFill(Color.web("#00FF00"));
 
         App contin = new App();
-        contin.moveOn(planData, costsData);
+        contin.mainStep(planData, costsData);
 
 
     }
@@ -184,7 +184,7 @@ public class StartSceneController {
         NorthWestPlan NWPlan = new NorthWestPlan(A, B, costsData);
         App contin = new App();
         try {
-            contin.moveOn(NWPlan.getPlan(), costsData);
+            contin.mainStep(NWPlan.getPlan(), costsData);
         } catch (Exception e) {
             System.out.println("Невозможно расставить потенциалы");
         }
@@ -266,7 +266,7 @@ public class StartSceneController {
         MinimalCostPlan MCPlan = new MinimalCostPlan(A, B, costsData);
         App contin = new App();
         try {
-            contin.moveOn(MCPlan.getPlan(), costsData);
+            contin.mainStep(MCPlan.getPlan(), costsData);
         } catch (Exception e) {
             System.out.println("Невозможно расставить потенциалы");
         }

@@ -9,7 +9,25 @@ public class MethodPotential {
     public ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
     public ArrayList<Integer> U = new ArrayList<>();
     public ArrayList<Integer> V = new ArrayList<>();
+    public ArrayList<String> steps = new ArrayList<>();
+    public ArrayList<String> Usteps = new ArrayList<>();
+    public ArrayList<String> Vsteps = new ArrayList<>();
 
+    public ArrayList<ArrayList<Integer>> getPlan() {
+        return plan;
+    }
+
+    public ArrayList<ArrayList<Integer>> getMatrix() {
+        return matrix;
+    }
+
+    public ArrayList<Integer> getU() {
+        return U;
+    }
+
+    public ArrayList<Integer> getV() {
+        return V;
+    }
 
     public MethodPotential(ArrayList<ArrayList<Integer>> primaryPlan, ArrayList<ArrayList<Integer>> primaryMatrix){
         // Подготавливаем элементы, с которыми будем работать
@@ -218,7 +236,17 @@ public class MethodPotential {
     }
 
 
+    public ArrayList<String> getSteps() {
+        return steps;
+    }
 
+    public ArrayList<String> getUsteps() {
+        return Usteps;
+    }
+
+    public ArrayList<String> getVsteps() {
+        return Vsteps;
+    }
 
     public ArrayList<ArrayList<Integer>> getOptimizedSolution(){
         // Сейчас посчитаем стоимость перевозок для неоптимизированного плана
@@ -235,16 +263,16 @@ public class MethodPotential {
 
         if (!tryToFindPotentialsByMyNewOptimizedMethod()) System.out.println("Невозможно расставить потенциалы!!!");
 
-        int amountTryies = 0;
         tryToFindPotentialsByMyNewOptimizedMethod();
-        while (!this.isOptimized(U, V) && amountTryies < 4){
-            amountTryies++;
+        while (!this.isOptimized(U, V)){
             findCircle();
             ArrayList<Integer> x = new ArrayList<>();
             ArrayList<Integer> y = new ArrayList<>();
             System.out.println("Потенциалы: ");
             System.out.println(U);
             System.out.println(V);
+            this.Usteps.add(U.toString());
+            this.Vsteps.add(V.toString());
 
             for (int i = 0; i < answer.size() - 1; i++){
                 String el = answer.get(i);
@@ -281,6 +309,14 @@ public class MethodPotential {
                 }
                 System.out.println(plan);
             }
+
+            String toAddtosteps = "";
+            for (ArrayList el: plan){
+                toAddtosteps += el.toString();
+                toAddtosteps += "\n";
+            }
+            this.steps.add(toAddtosteps);
+
             if (!tryToFindPotentialsByMyNewOptimizedMethod()) break;
         }
 

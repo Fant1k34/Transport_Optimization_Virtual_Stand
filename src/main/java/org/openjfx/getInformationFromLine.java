@@ -14,6 +14,10 @@ public class getInformationFromLine {
         while (field.contains("\n\n")){
             field = field.replace("\n\n", "\n");
         }
+        field = field.trim();
+        if (field.substring(field.length() - 1, field.length()).equals("\n")){
+            field = field.substring(0, field.length() - 1);
+        }
         ArrayList<ArrayList<Integer>> answer = new ArrayList<>();
         for (String el : field.split("\n")) {
             ArrayList<Integer> toAdd = new ArrayList<>();

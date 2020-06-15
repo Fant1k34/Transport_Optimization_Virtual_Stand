@@ -20,7 +20,6 @@ public class drawTheTable {
             info.add(new ClassForRow(StartPlan.get(i), B.get(i)));
         }
 
-
         TableView table = new TableView(info);
         table.setPrefWidth(250);
         table.setPrefHeight(200);

@@ -9,47 +9,26 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class MainSceneController {
+    public ArrayList<ArrayList<Integer>> StartPlan;
+    public ArrayList<ArrayList<Integer>> StartCosts;
 
-    public Button addColomn;
-    public Button addRow;
-    public Button removeColomn;
-    public Button removeRow;
-    public TableView StartTable;
-    public Button mainButton;
-
-    public void buttonClicked() {
-        System.out.println("Button clicked!");
+    public MainSceneController(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts){
+        this.StartPlan = StartPlan;
+        this.StartCosts = StartCosts;
     }
 
-    public void addNewColomn(){
-        ObservableList<String> people = FXCollections.observableArrayList(
-
-                "A",
-                "B",
-                "C"
-        );
-
-        TableColumn<String, String> userNameCol //
-                = new TableColumn<String, String>("User Name");
-        StartTable = new TableView<String>(people);
-
-        FlowPane root = new FlowPane(10, 10, StartTable);
-
-        Scene scene = new Scene(root, 300, 250);
-
+    public void nextStep(){
+        MethodPotential method = new MethodPotential(StartPlan, StartCosts);
+        try {
+            method.getOptimizedSolution();
+        }
+        catch (Exception ex){
+            return;
+        }
 
     }
 
-    public void addNewRow(){
-
-    }
-
-    public void removeNewColomn(){
-
-    }
-
-    public void removeNewRow(){
-
-    }
 }
