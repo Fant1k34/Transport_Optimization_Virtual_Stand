@@ -24,5 +24,10 @@
       <Label layoutX="424.0" layoutY="511.0" prefHeight="26.0" prefWidth="83.0" text="Поставщики B" />
       <Button id="northWestPlan" fx:id="northWestPlan" layoutX="51.0" layoutY="544.0" mnemonicParsing="false" onAction="#getNorthWestPlan" prefHeight="26.0" prefWidth="312.0" text="Получить решение методом северо-западного угла" />
       <Button id="minimalCosts" fx:id="minimalCosts" layoutX="466.0" layoutY="544.0" mnemonicParsing="false" onAction="#getMinimalCosts" prefHeight="26.0" prefWidth="318.0" text="Получить решение методом минимальной стоимости" />
+      <Label id="infoLine" fx:id="infoLine" layoutX="15.0" layoutY="483.0" prefHeight="18.0" prefWidth="819.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
