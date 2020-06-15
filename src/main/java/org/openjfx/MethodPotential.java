@@ -330,6 +330,8 @@ public class MethodPotential {
         System.out.println(V);
         System.out.println("Начальная стоимость - " + startCosts);
         System.out.println("Конечная стоимость - " + finalCosts);
+        this.Usteps.add(U.toString());
+        this.Vsteps.add(V.toString());
         return null;
     }
 

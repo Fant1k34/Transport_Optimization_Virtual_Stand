@@ -44,6 +44,10 @@ public class getInformationFromLine {
         while (field.contains("\n\n")){
             field = field.replace("\n\n", "\n");
         }
+        field = field.trim();
+        if (field.substring(field.length() - 1, field.length()).equals("\n")){
+            field = field.substring(0, field.length() - 1);
+        }
         ArrayList<Integer> answer = new ArrayList<>();
         Arrays.stream(field.split(" ")).mapToInt((i -> (int) Integer.valueOf(i))).forEach(answer::add);
         return answer;

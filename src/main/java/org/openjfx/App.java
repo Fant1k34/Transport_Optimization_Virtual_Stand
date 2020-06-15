@@ -64,7 +64,7 @@ public class App extends Application {
         Button but = new Button("Важная кнопка!");
 
 
-        stage.setScene(moveOn(StartPlan, StartCosts, but));
+        stage.setScene(moveOn(StartPlan, StartCosts, null, null, but));
 
         MethodPotential method = new MethodPotential(StartPlan, StartCosts);
         try {
@@ -93,7 +93,11 @@ public class App extends Application {
                     if (stepNumber.get(0) >= method.getSteps().size()) {return;}
                     ArrayList<ArrayList<Integer>> stepToShow = getInformationFromLine.getInfo(method.getSteps().get(stepNumber.get(0)).replace("[", "")
                             .replace("]", "").replace(",", " "));
-                    stage.setScene(moveOn(stepToShow, StartCosts, but));
+                    ArrayList<Integer> UstepToShow = getInformationFromLine.getLine(method.getVsteps().get(stepNumber.get(0) + 1).replace("[", "")
+                            .replace("]", "").replace(",", " "));
+                    ArrayList<Integer> VstepToShow = getInformationFromLine.getLine(method.getUsteps().get(stepNumber.get(0) + 1).replace("[", "")
+                            .replace("]", "").replace(",", " "));
+                    stage.setScene(moveOn(stepToShow, StartCosts, UstepToShow, VstepToShow, but));
                     stepNumber.set(0, stepNumber.get(0) + 1);
                 } catch (IOException e) {
                     return;
@@ -105,33 +109,35 @@ public class App extends Application {
     }
 
 
-    public Scene moveOn(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts, Button but) throws IOException {
-
+    public Scene moveOn(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts, ArrayList<Integer> X, ArrayList<Integer> Y, Button but) throws IOException {
         Data getItems = new Data(StartPlan, StartCosts);
         ArrayList<Integer> A = getItems.getA();
         ArrayList<Integer> B = getItems.getB();
         ArrayList<ArrayList<Integer>> costs = getItems.getCosts();
 
+        try{
+            MethodPotential method = new MethodPotential(StartPlan, StartCosts);
+            method.getOptimizedSolution();
+            X = getInformationFromLine.getLine(method.getVsteps().get(0).replace("[", "")
+                    .replace("]", "").replace(",", " "));
+            Y = getInformationFromLine.getLine(method.getUsteps().get(0).replace("[", "")
+                    .replace("]", "").replace(",", " "));
+        }
+        catch (Exception ex){
+            X = A;
+            Y = B;
+        }
 
         HBox hbox = new HBox();
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
 
         TableView table1 = drawTheTable.drawTable(StartPlan, A, B);
-        TableView table2 = drawTheTable.drawTable(StartCosts, A, B);
+        TableView table2 = drawTheTable.drawTable(StartCosts, X, Y);
 
         vbox1.getChildren().addAll(table1, but);
         vbox2.getChildren().addAll(table2, new Label(" 9 "));
         hbox.getChildren().addAll(vbox1, vbox2);
-
-//        FXMLLoader loader = new FXMLLoader();
-//        URL xmlUrl = getClass().getResource("/mainScene.fxml");
-//        loader.setLocation(xmlUrl);
-//        Parent root = null;
-//        root = loader.load();
-
-
-
         return new Scene(hbox);
     }
 
