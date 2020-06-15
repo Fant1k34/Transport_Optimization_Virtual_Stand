@@ -11,7 +11,7 @@ public class Data {
     public ArrayList<Integer> B = new ArrayList<>();
     public ArrayList<ArrayList<Integer>> costs = new ArrayList<>();
 
-    public void Data(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts){
+    public Data(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts){
         for (int j = 0; j < StartPlan.get(0).size(); j++){
             int sum = 0;
             for (int i = 0; i < StartPlan.size(); i++){

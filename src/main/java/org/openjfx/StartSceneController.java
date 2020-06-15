@@ -48,8 +48,63 @@ public class StartSceneController {
             return;
         }
 
+        if (costsData.size() != planData.size()){
+            infoLine.setText("Critical Error. Amount of ROWS in PLAN and COSTS do not equals");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (planData.size() >= 10 || planData.get(0).size() >= 10){
+            infoLine.setText("Error. The maximum amount of rows and columns are 9");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+
+        if (!planData.stream().mapToInt(i -> i.size()).allMatch(i -> i == planData.get(0).size())){
+            infoLine.setText("Critical Error. There are different amount of numbers in rows in PLAN");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (!costsData.stream().mapToInt(i -> i.size()).allMatch(i -> i == costsData.get(0).size())){
+            infoLine.setText("Critical Error. There are different amount of numbers in rows in COSTS");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (costsData.get(0).size() != planData.get(0).size()){
+            infoLine.setText("Critical Error. Amount of COLUMNS in PLAN and COSTS do not equals");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        for (ArrayList el: planData){
+            if (el.stream().mapToInt(i -> (Integer) i).sum() == 0){
+                infoLine.setText("Error. PLAN must not have the ROW with 0");
+                infoLine.setTextFill(Color.web("#FF8C00"));
+                return;
+            }
+        }
+
+        for (int j = 0; j < planData.get(0).size(); j++) {
+            int sum = 0;
+            for (int i = 0; i < planData.size(); i++) {
+                sum += planData.get(i).get(j);
+            }
+            if (sum == 0) {
+                infoLine.setText("Error. PLAN must not have the COLUMN with 0");
+                infoLine.setTextFill(Color.web("#FF8C00"));
+                return;
+            }
+        }
+
+        infoLine.setText("Primary check is successful");
+        infoLine.setTextFill(Color.web("#00FF00"));
+
         App contin = new App();
         contin.moveOn(planData, costsData);
+
 
     }
 
@@ -63,7 +118,7 @@ public class StartSceneController {
             text3 = costs.getText();
         }
         catch (Exception e){
-            infoLine.setText("Error. PROVIDERS A, CONSUMERS B and COSTS must not be empty for NorthWestPlan");
+            infoLine.setText("Error. CONSUMERS A, PROVIDERS B and COSTS must not be empty for NorthWestPlan");
             infoLine.setTextFill(Color.web("#FF8C00"));
             return;
         }
@@ -75,7 +130,19 @@ public class StartSceneController {
             B = getInformationFromLine.getLine(text2);
         }
         catch (Exception e){
-            infoLine.setText("Error. PROVIDERS A and CONSUMERS B must be a number divided by whitespace");
+            infoLine.setText("Error. CONSUMERS A and PROVIDERS B must be a number divided by whitespace");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (A.stream().reduce((r, l) -> r*l).get() == 0){
+            infoLine.setText("Error. CONSUMERS A must not contain 0 elements");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (B.stream().reduce((r, l) -> r*l).get() == 0){
+            infoLine.setText("Error. PROVIDERS B must not contain 0 elements");
             infoLine.setTextFill(Color.web("#FF8C00"));
             return;
         }
@@ -87,6 +154,32 @@ public class StartSceneController {
             return;
         }
 
+        if (costsData.size() >= 10 || costsData.get(0).size() >= 10){
+            infoLine.setText("Error. The maximum amount of rows and columns are 9");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (!costsData.stream().mapToInt(i -> i.size()).allMatch(i -> i == costsData.get(0).size())){
+            infoLine.setText("Critical Error. There are different amount of numbers in rows in COSTS");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (costsData.size() != B.size()){
+            infoLine.setText("Critical Error. Check your COSTS. It must equals to PROVIDERS B");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (costsData.get(0).size() != A.size()){
+            infoLine.setText("Critical Error. Check your COSTS. It must equals to CONSUMERS A");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        infoLine.setText("Primary check is successful");
+        infoLine.setTextFill(Color.web("#00FF00"));
 
         NorthWestPlan NWPlan = new NorthWestPlan(A, B, costsData);
         App contin = new App();
@@ -107,7 +200,7 @@ public class StartSceneController {
             text3 = costs.getText();
         }
         catch (Exception e){
-            infoLine.setText("Error. PROVIDERS A, CONSUMERS B and COSTS must not be empty for MinimalCostPlan");
+            infoLine.setText("Error. CONSUMERS A, PROVIDERS B and COSTS must not be empty for MinimalCostPlan");
             infoLine.setTextFill(Color.web("#FF8C00"));
             return;
         }
@@ -119,7 +212,7 @@ public class StartSceneController {
             B = getInformationFromLine.getLine(text2);
         }
         catch (Exception e){
-            infoLine.setText("Error. PROVIDERS A and CONSUMERS B must be a number divided by whitespace");
+            infoLine.setText("Error. CONSUMERS A and PROVIDERS B must be a number divided by whitespace");
             infoLine.setTextFill(Color.web("#FF8C00"));
             return;
         }
@@ -131,6 +224,44 @@ public class StartSceneController {
             return;
         }
 
+        if (costsData.size() >= 10 || costsData.get(0).size() >= 10){
+            infoLine.setText("Error. The maximum amount of rows and columns are 9");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (!costsData.stream().mapToInt(i -> i.size()).allMatch(i -> i == costsData.get(0).size())){
+            infoLine.setText("Critical Error. There are different amount of numbers in rows in COSTS");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (A.stream().reduce((r, l) -> r*l).get() == 0){
+            infoLine.setText("Error. CONSUMERS A must not contain 0 elements");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (B.stream().reduce((r, l) -> r*l).get() == 0){
+            infoLine.setText("Error. PROVIDERS B must not contain 0 elements");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (costsData.size() != B.size()){
+            infoLine.setText("Critical Error. Check your COSTS. It must equals to PROVIDERS B");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (costsData.get(0).size() != A.size()){
+            infoLine.setText("Critical Error. Check your COSTS. It must equals to CONSUMERS A");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        infoLine.setText("Primary check is successful");
+        infoLine.setTextFill(Color.web("#00FF00"));
 
         MinimalCostPlan MCPlan = new MinimalCostPlan(A, B, costsData);
         App contin = new App();

@@ -5,6 +5,15 @@ import java.util.Arrays;
 
 public class getInformationFromLine {
     public static ArrayList<ArrayList<Integer>> getInfo(String field) {
+        while (field.contains("  ")){
+            field = field.replace("  ", " ");
+        }
+        while (field.contains("\n ")){
+            field = field.replace("\n ", "\n");
+        }
+        while (field.contains("\n\n")){
+            field = field.replace("\n\n", "\n");
+        }
         ArrayList<ArrayList<Integer>> answer = new ArrayList<>();
         for (String el : field.split("\n")) {
             ArrayList<Integer> toAdd = new ArrayList<>();
@@ -22,6 +31,15 @@ public class getInformationFromLine {
     }
 
     public static ArrayList<Integer> getLine(String field) {
+        while (field.contains("  ")){
+            field = field.replace("  ", " ");
+        }
+        while (field.contains("\n ")){
+            field = field.replace("\n ", "\n");
+        }
+        while (field.contains("\n\n")){
+            field = field.replace("\n\n", "\n");
+        }
         ArrayList<Integer> answer = new ArrayList<>();
         Arrays.stream(field.split(" ")).mapToInt((i -> (int) Integer.valueOf(i))).forEach(answer::add);
         return answer;

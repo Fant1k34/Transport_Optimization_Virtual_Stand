@@ -1,9 +1,20 @@
 package org.openjfx;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,62 +50,45 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-//        Data getItems = new Data();
-//        ArrayList<Integer> A = getItems.getA();
-//        ArrayList<Integer> B = getItems.getB();
-//        ArrayList<ArrayList<Integer>> costs = getItems.getCosts();
-//
-//        NorthWestPlan plan = new NorthWestPlan(A, B, costs);
-//        MinimalCostPlan newplan = new MinimalCostPlan(A, B, costs);
-//        System.out.println(plan.getPlan());
-//        newplan.getPlan();
-//        plan.getSolutionPlan();
-//        plan.getSolutionMatrix();
-//
-//        ArrayList<ArrayList<Integer>> ultra = new ArrayList<>();
-//        ultra.add(new ArrayList<>(Arrays.asList(0, 40, 80, 0)));
-//        ultra.add(new ArrayList<>(Arrays.asList(50, 0, 150, 0)));
-//        ultra.add(new ArrayList<>(Arrays.asList(0, 10, 0, 170)));
-//
-//        MethodPotential method = new MethodPotential(ultra, costs);
-//        method.getOptimizedSolution();
-//
-//        HashMap<Integer, Integer> map = new HashMap<>();
-//        map.put(0, 0);
-//        map.put(1, 1);
-
         launch();
-
     }
 
     public void moveOn(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<ArrayList<Integer>> StartCosts) throws IOException {
 
-        Data getItems = new Data();
+        Data getItems = new Data(StartPlan, StartCosts);
         ArrayList<Integer> A = getItems.getA();
         ArrayList<Integer> B = getItems.getB();
         ArrayList<ArrayList<Integer>> costs = getItems.getCosts();
 
-//        NorthWestPlan plan = new NorthWestPlan(A, B, costs);
-//        MinimalCostPlan newplan = new MinimalCostPlan(A, B, costs);
-//        System.out.println(plan.getPlan());
-//        newplan.getPlan();
-//        plan.getSolutionPlan();
-//        plan.getSolutionMatrix();
 
-        MethodPotential method = new MethodPotential(StartPlan, StartCosts);
-        method.getOptimizedSolution();
+//        MethodPotential method = new MethodPotential(StartPlan, StartCosts);
+//        method.getOptimizedSolution();
 
 
         Stage stage = new Stage();
 
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/mainScene.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = null;
-        root = loader.load();
+
+        HBox hbox = new HBox();
+        VBox vbox1 = new VBox();
+        VBox vbox2 = new VBox();
+
+        TableView table1 = drawTheTable.drawTable(StartPlan, A, B);
+        TableView table2 = drawTheTable.drawTable(StartCosts, A, B);
+
+        vbox1.getChildren().addAll(table1, new Label(" 5 "));
+        vbox2.getChildren().addAll(table2, new Label(" 9 "));
+        hbox.getChildren().addAll(vbox1, vbox2);
+
+//        FXMLLoader loader = new FXMLLoader();
+//        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+//        loader.setLocation(xmlUrl);
+//        Parent root = null;
+//        root = loader.load();
 
 
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(hbox));
+        stage.setWidth(800);
+        stage.setHeight(800);
         stage.show();
 
     }
