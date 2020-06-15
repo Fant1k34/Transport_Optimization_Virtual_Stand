@@ -5,13 +5,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class MethodPotential {
-    public ArrayList<ArrayList<Integer>> plan = new ArrayList<>();
-    public ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
-    public ArrayList<Integer> U = new ArrayList<>();
-    public ArrayList<Integer> V = new ArrayList<>();
-    public ArrayList<String> steps = new ArrayList<>();
-    public ArrayList<String> Usteps = new ArrayList<>();
-    public ArrayList<String> Vsteps = new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> plan = new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+    private ArrayList<Integer> U = new ArrayList<>();
+    private ArrayList<Integer> V = new ArrayList<>();
+    private ArrayList<String> steps = new ArrayList<>();
+    private ArrayList<String> Usteps = new ArrayList<>();
+    private ArrayList<String> Vsteps = new ArrayList<>();
+    private Integer startValue = -1;
+    private Integer finishValue = -1;
 
     public ArrayList<ArrayList<Integer>> getPlan() {
         return plan;
@@ -75,7 +77,7 @@ public class MethodPotential {
     }
 
 
-    public boolean tryToFindPotentialsByMyNewOptimizedMethod(){
+    private boolean tryToFindPotentialsByMyNewOptimizedMethod(){
         ArrayList<String> attempt = new ArrayList<>();
         ArrayList<String> foundU = new ArrayList<>();
         ArrayList<String> foundV = new ArrayList<>();
@@ -124,7 +126,7 @@ public class MethodPotential {
         return true;
     }
 
-    public ArrayList<Integer> findMax(){
+    private ArrayList<Integer> findMax(){
         // Метод позволяет найти максимальное отклонение, если план не оптимален!!!
         int imax = -1;
         int jmax = -1;
@@ -143,7 +145,7 @@ public class MethodPotential {
     }
 
 
-    public boolean ifCircle(ArrayList<String> used){
+    private boolean ifCircle(ArrayList<String> used){
         // Длина цикла >= 4
         if (used.size() <= 3) return false;
         // Цикл начинается с x1 и заканцивается x1, Соответсвенно HashSet != ArrayList
@@ -155,7 +157,7 @@ public class MethodPotential {
         return true;
     }
 
-    public boolean ifOK(ArrayList<String> used){
+    private boolean ifOK(ArrayList<String> used){
         if (used.size() == 2 && used.get(1).equals(startPointU)) return false;
         if (used.size() <= 1) return true;
         return !used.subList(1, used.size() - 1).contains(used.get(used.size() - 1));
@@ -163,7 +165,7 @@ public class MethodPotential {
 
 
 
-    public void extend(){
+    private void extend(){
         if (used.get(used.size() - 1).subSequence(0, 1).equals("V")) {
             int z = Integer.parseInt(String.valueOf(used.get(used.size() - 1).subSequence(1, 2)));
             // Теперь z - индекс
@@ -201,12 +203,12 @@ public class MethodPotential {
             return;
         }
     }
-    public ArrayList<String> answer = new ArrayList<>();
-    public ArrayList<String> used = new ArrayList<>();
-    public String startPointU;
-    public String startPointV;
+    private ArrayList<String> answer = new ArrayList<>();
+    private ArrayList<String> used = new ArrayList<>();
+    private String startPointU;
+    private String startPointV;
 
-    public boolean findCircle(){
+    private boolean findCircle(){
         // Метод позволяет найти контур
         int ii, jj;
         ii = findMax().get(0);
@@ -225,7 +227,7 @@ public class MethodPotential {
     }
 
 
-    public int countCostsForPlan(){
+    private int countCostsForPlan(){
         int sum = 0;
         for (int i = 0; i < plan.size(); i++){
             for (int j = 0; j < plan.get(0).size(); j++){
@@ -246,6 +248,14 @@ public class MethodPotential {
 
     public ArrayList<String> getVsteps() {
         return Vsteps;
+    }
+
+    public Integer getStartValue() {
+        return startValue;
+    }
+
+    public Integer getFinishValue() {
+        return finishValue;
     }
 
     public ArrayList<ArrayList<Integer>> getOptimizedSolution(){
@@ -332,6 +342,8 @@ public class MethodPotential {
         System.out.println("Конечная стоимость - " + finalCosts);
         this.Usteps.add(U.toString());
         this.Vsteps.add(V.toString());
+        this.startValue = startCosts;
+        this.finishValue = finalCosts;
         return null;
     }
 

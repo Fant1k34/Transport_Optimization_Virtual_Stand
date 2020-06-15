@@ -1,20 +1,13 @@
 package org.openjfx;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -22,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javafx.fxml.FXMLLoader;
 
@@ -31,15 +23,13 @@ import javafx.fxml.FXMLLoader;
  * JavaFX App
  */
 public class App extends Application {
+    private MethodPotential method;
+    private String startLabelText = "";
+    private String finishLabelText = "";
 
     @Override
     public void start(Stage stage) throws IOException {
-
         stage.setTitle("Method of potentials");
-
-//        InputStream iconStream = getClass().getResourceAsStream("/icon.png");
-//        Image image = new Image(iconStream);
-//        stage.getIcons().add(image);
 
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/startScene.fxml");
@@ -67,8 +57,11 @@ public class App extends Application {
         stage.setScene(moveOn(StartPlan, StartCosts, null, null, but));
 
         MethodPotential method = new MethodPotential(StartPlan, StartCosts);
+        this.method = method;
         try {
             method.getOptimizedSolution();
+            this.startLabelText = String.valueOf(method.getStartValue());
+            this.finishLabelText = String.valueOf(method.getFinishValue());
         }
         catch (Exception ex){
             System.out.println("Unable to optimize");
@@ -77,12 +70,7 @@ public class App extends Application {
 
         ArrayList<Integer> stepNumber = new ArrayList<>();
         stepNumber.add(0);
-//        ArrayList<ArrayList<Integer>> stepToShow = getInformationFromLine.getInfo(method.getSteps().get(stepNumber.get(0)).replace("[", " ")
-//                .replace("]", " ").replace(",", " "));
-//        System.out.println(stepToShow);
-//        System.out.println(method.getSteps().get(0));
-//        System.out.println(method.getUsteps().get(0));
-//        System.out.println(method.getVsteps().get(0));
+
 
         but.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -131,11 +119,13 @@ public class App extends Application {
         HBox hbox = new HBox();
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
+        VBox vbox3 = new VBox();
+        vbox3.getChildren().addAll(but, new Label("Начальная стоимость - " + startLabelText), new Label("Конечная стоимость - " + finishLabelText));
 
         TableView table1 = drawTheTable.drawTable(StartPlan, A, B);
         TableView table2 = drawTheTable.drawTable(StartCosts, X, Y);
 
-        vbox1.getChildren().addAll(table1, but);
+        vbox1.getChildren().addAll(table1, vbox3);
         vbox2.getChildren().addAll(table2, new Label(" 9 "));
         hbox.getChildren().addAll(vbox1, vbox2);
         return new Scene(hbox);

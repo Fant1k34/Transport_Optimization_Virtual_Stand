@@ -9,10 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ArrayList;
 
 public class drawTheTable {
-    public drawTheTable(){
-
-    }
-
     public static TableView drawTable(ArrayList<ArrayList<Integer>> StartPlan, ArrayList<Integer> A, ArrayList<Integer> B){
         ObservableList<ClassForRow> info = FXCollections.observableArrayList();
 

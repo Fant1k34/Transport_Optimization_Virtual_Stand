@@ -3,12 +3,12 @@ package org.openjfx;
 import java.util.ArrayList;
 
 public class NorthWestPlan {
-    public ArrayList<Integer> A;
-    public ArrayList<Integer> B;
-    public ArrayList<ArrayList<Integer>> plan = new ArrayList<>();
-    public ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
-    public ArrayList<ArrayList<ArrayList<Integer>>> solutionPlan = new ArrayList<>();
-    public ArrayList<ArrayList<ArrayList<Integer>>> solutionMatrix = new ArrayList<>();
+    private ArrayList<Integer> A;
+    private ArrayList<Integer> B;
+    private ArrayList<ArrayList<Integer>> plan = new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+    private ArrayList<ArrayList<ArrayList<Integer>>> solutionPlan = new ArrayList<>();
+    private ArrayList<ArrayList<ArrayList<Integer>>> solutionMatrix = new ArrayList<>();
 
     public NorthWestPlan(ArrayList<Integer> A, ArrayList<Integer> B, ArrayList<ArrayList<Integer>> matrixCosts) {
         this.A = new ArrayList<>(A); // В конструктор передаётся сначала Элемент А - потребители, потом - B

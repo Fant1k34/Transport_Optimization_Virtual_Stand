@@ -142,13 +142,13 @@ public class ClassForRow {
         this.V9.set(v9);
     }
 
-    public SimpleStringProperty V3 = null;
-    public SimpleStringProperty V4 = null;
-    public SimpleStringProperty V5 = null;
-    public SimpleStringProperty V6 = null;
-    public SimpleStringProperty V7 = null;
-    public SimpleStringProperty V8 = null;
-    public SimpleStringProperty V9 = null;
+    private SimpleStringProperty V3 = null;
+    private SimpleStringProperty V4 = null;
+    private SimpleStringProperty V5 = null;
+    private SimpleStringProperty V6 = null;
+    private SimpleStringProperty V7 = null;
+    private SimpleStringProperty V8 = null;
+    private SimpleStringProperty V9 = null;
 
     public ClassForRow(ArrayList<Integer> array, int number){
         V = new SimpleStringProperty(String.valueOf(number));
