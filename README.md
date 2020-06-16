@@ -34,5 +34,5 @@
   - Write your matrix costs to right text area
   - Click the button
   - The bottom **left** button give a solution by **North-West method**
-  - The bottom **righ** button give a solution by **Minimal Costs method**
+  - The bottom **right** button give a solution by **Minimal Costs method**
 ![Что-то пошло не так](description/first.png "Главное меню")
