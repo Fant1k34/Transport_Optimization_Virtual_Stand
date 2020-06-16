@@ -24,7 +24,7 @@
 - https://github.com/Fant1k34/transportOptimization
 ## How to use the project
 - **There are two different ways to use this project**
-  - Write your data into these two text areas
+  - Write your data into these two text areas like table-info (look to the picture)
   - **Left** text area is for plan
   - **Right** text area is for matrix costs
   - Every symbol must be divided by a whitespace (to add new column) or enter (to add a new row)
