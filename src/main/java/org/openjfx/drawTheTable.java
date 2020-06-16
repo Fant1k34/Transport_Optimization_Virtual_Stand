@@ -17,8 +17,8 @@ public class drawTheTable {
         }
 
         TableView table = new TableView(info);
-        table.setPrefWidth(250);
-        table.setPrefHeight(200);
+        table.setPrefWidth(300);
+        table.setPrefHeight(300);
 
         TableColumn<ClassForRow, String> Column = new TableColumn<ClassForRow, String>("");
         Column.setCellValueFactory(new PropertyValueFactory<ClassForRow, String>("V"));

@@ -23,9 +23,10 @@ import javafx.fxml.FXMLLoader;
  * JavaFX App
  */
 public class App extends Application {
-    private MethodPotential method;
-    private String startLabelText = "";
-    private String finishLabelText = "";
+    private MethodPotential method = null;
+    private String startLabelText = "Попытка подсчитать";
+    private String finishLabelText = "Попытка подсчитать";
+    private String commonText = "Оптимизация допустима";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -51,21 +52,22 @@ public class App extends Application {
         Stage stage = new Stage();
         stage.setWidth(800);
         stage.setHeight(800);
-        Button but = new Button("Важная кнопка!");
+        Button but = new Button("Оптимизировать");
 
 
         stage.setScene(moveOn(StartPlan, StartCosts, null, null, but));
 
         MethodPotential method = new MethodPotential(StartPlan, StartCosts);
         this.method = method;
+
         try {
             method.getOptimizedSolution();
             this.startLabelText = String.valueOf(method.getStartValue());
             this.finishLabelText = String.valueOf(method.getFinishValue());
         }
         catch (Exception ex){
+            commonText = "Оптимизация невозможна. Потенциалы расставлены случайным образом.";
             System.out.println("Unable to optimize");
-            return;
         }
 
         ArrayList<Integer> stepNumber = new ArrayList<>();
@@ -78,7 +80,10 @@ public class App extends Application {
                 System.out.println("Я сработала");
                 try {
                     // Шаг, который надо показать
-                    if (stepNumber.get(0) >= method.getSteps().size()) {return;}
+                    if (stepNumber.get(0) >= method.getSteps().size()) {
+                        but.setText("Оптимизация максимальна");
+                        return;
+                    }
                     ArrayList<ArrayList<Integer>> stepToShow = getInformationFromLine.getInfo(method.getSteps().get(stepNumber.get(0)).replace("[", "")
                             .replace("]", "").replace(",", " "));
                     ArrayList<Integer> UstepToShow = getInformationFromLine.getLine(method.getVsteps().get(stepNumber.get(0) + 1).replace("[", "")
@@ -112,6 +117,7 @@ public class App extends Application {
                     .replace("]", "").replace(",", " "));
         }
         catch (Exception ex){
+            commonText = "Оптимизация невозможна. Потенциалы расставлены случайным образом.";
             X = A;
             Y = B;
         }
@@ -120,15 +126,16 @@ public class App extends Application {
         VBox vbox1 = new VBox();
         VBox vbox2 = new VBox();
         VBox vbox3 = new VBox();
+        VBox vbox4 = new VBox();
         vbox3.getChildren().addAll(but, new Label("Начальная стоимость - " + startLabelText), new Label("Конечная стоимость - " + finishLabelText));
+        vbox4.getChildren().addAll(new Label(" 9 "), new Label(commonText));
 
         TableView table1 = drawTheTable.drawTable(StartPlan, A, B);
         TableView table2 = drawTheTable.drawTable(StartCosts, X, Y);
 
         vbox1.getChildren().addAll(table1, vbox3);
-        vbox2.getChildren().addAll(table2, new Label(" 9 "));
+        vbox2.getChildren().addAll(table2, vbox4);
         hbox.getChildren().addAll(vbox1, vbox2);
         return new Scene(hbox);
     }
-
 }
