@@ -36,3 +36,8 @@
   - The bottom **left** button give a solution by **North-West method**
   - The bottom **right** button give a solution by **Minimal Costs method**
 ![Что-то пошло не так](description/first.png "Главное меню")
+- You would get the primary plan (genered by one method or your plan) and potentials (if it is possible to count)
+- Click to the button and plan, and matrix costs would change by method of potentials
+- When the button change the name - it would be useful to click, because you have got the optimized plan
+- If for some reasons (the graph would not be the tree and have m+n-1 nodes) you would not optimize the plan any more
+![Что-то пошло не так](description/second.png "Главное меню")
