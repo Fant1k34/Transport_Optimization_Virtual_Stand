@@ -37,8 +37,6 @@ public class App extends Application {
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
 
-        Label newLabel = new Label("Аааааа");
-
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -67,7 +65,6 @@ public class App extends Application {
         }
         catch (Exception ex){
             commonText = "Potentials are unavailable to count. It's random";
-            System.out.println("Unable to optimize");
         }
 
         ArrayList<Integer> stepNumber = new ArrayList<>();
