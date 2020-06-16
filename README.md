@@ -23,4 +23,4 @@
 ## Repo
 - https://github.com/Fant1k34/transportOptimization
 ## How to use the project
-![Что-то пошло не так](/description/first.jpg "Главное меню")
+![Что-то пошло не так](description/first.jpg "Главное меню")
