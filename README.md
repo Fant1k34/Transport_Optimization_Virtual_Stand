@@ -40,4 +40,7 @@
 - Click to the button and plan, and matrix costs would change by method of potentials
 - When the button change the name - it would be useful to click, because you have got the optimized plan
 - If for some reasons (the graph would not be the tree and have m+n-1 nodes) you would not optimize the plan any more
-![Что-то пошло не так](description/second.png "Главное меню")
+![Что-то пошло не так](description/second.png "Начало оптимизации")
+- Counted potentials are in the left table
+- The optimized solution would be shown like
+![Что-то пошло не так](description/third.png "Конец оптимизации")
