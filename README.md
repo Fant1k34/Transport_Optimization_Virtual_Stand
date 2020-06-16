@@ -21,4 +21,6 @@
 - Make an interface using javaFX to show table and graph
   - Interface is going to show the table with cost-coefficients and optimization tree
 ## Repo
-- https://github.com/Fant1k34/transportOptimization 
+- https://github.com/Fant1k34/transportOptimization
+## How to use the project
+![Что-то пошло не так](/description/first.jpg "Главное меню")
