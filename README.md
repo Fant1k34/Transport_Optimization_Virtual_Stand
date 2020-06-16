@@ -43,4 +43,6 @@
 ![Что-то пошло не так](description/second.png "Начало оптимизации")
 - Counted potentials are in the left table
 - The optimized solution would be shown like
-![Что-то пошло не так](description/third.png "Конец оптимизации")
+![Что-то пошло не так](description/third.png "Середина оптимизации")
+- The final optimization will be shown like button with text "Optimization is maximum"
+![Что-то пошло не так](description/fouth.png "Конец оптимизации")
