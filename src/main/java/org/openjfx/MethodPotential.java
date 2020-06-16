@@ -272,9 +272,10 @@ public class MethodPotential {
         }
 
         if (!tryToFindPotentialsByMyNewOptimizedMethod()) System.out.println("Невозможно расставить потенциалы!!!");
-
+        int amountTryes = 0;
         tryToFindPotentialsByMyNewOptimizedMethod();
-        while (!this.isOptimized(U, V)){
+        while (!this.isOptimized(U, V) && amountTryes < 50){
+            amountTryes++;
             findCircle();
             ArrayList<Integer> x = new ArrayList<>();
             ArrayList<Integer> y = new ArrayList<>();
