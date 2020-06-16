@@ -21,4 +21,26 @@
 - Make an interface using javaFX to show table and graph
   - Interface is going to show the table with cost-coefficients and optimization tree
 ## Repo
-- https://github.com/Fant1k34/transportOptimization 
+- https://github.com/Fant1k34/transportOptimization
+## How to use the project
+- **There are two different ways to use this project**
+  - Write your data into these two text areas like table-info (look to the picture)
+  - **Left** text area is for plan
+  - **Right** text area is for matrix costs
+  - Every symbol must be divided by a whitespace (to add new column) or enter (to add a new row)
+  - Press the butten to optimize
+- **The another one**
+  - Write your data to consumers A and providers B
+  - Write your matrix costs to right text area
+  - Click the button
+  - The bottom **left** button give a solution by **North-West method**
+  - The bottom **right** button give a solution by **Minimal Costs method**
+![Что-то пошло не так](description/first.png "Главное меню")
+- You would get the primary plan (genered by one method or your plan) and potentials (if it is possible to count)
+- Click to the button and plan, and matrix costs would change by method of potentials
+- When the button change the name - it would be useful to click, because you have got the optimized plan
+- If for some reasons (the graph would not be the tree and have m+n-1 nodes) you would not optimize the plan any more
+![Что-то пошло не так](description/second.png "Начало оптимизации")
+- Counted potentials are in the left table
+- The optimized solution would be shown like
+![Что-то пошло не так](description/third.png "Конец оптимизации")
