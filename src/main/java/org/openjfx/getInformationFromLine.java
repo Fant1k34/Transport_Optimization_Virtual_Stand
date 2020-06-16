@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 public class getInformationFromLine {
     public static ArrayList<ArrayList<Integer>> getInfo(String field) {
+        if (field.equals("")){
+            return null;
+        }
         while (field.contains("  ")){
             field = field.replace("  ", " ");
         }
@@ -15,6 +18,9 @@ public class getInformationFromLine {
             field = field.replace("\n\n", "\n");
         }
         field = field.trim();
+        if (field.equals("")){
+            return null;
+        }
         if (field.substring(field.length() - 1, field.length()).equals("\n")){
             field = field.substring(0, field.length() - 1);
         }
@@ -35,6 +41,9 @@ public class getInformationFromLine {
     }
 
     public static ArrayList<Integer> getLine(String field) {
+        if (field.equals("")){
+            return null;
+        }
         while (field.contains("  ")){
             field = field.replace("  ", " ");
         }
@@ -45,6 +54,9 @@ public class getInformationFromLine {
             field = field.replace("\n\n", "\n");
         }
         field = field.trim();
+        if (field.equals("")){
+            return null;
+        }
         if (field.substring(field.length() - 1, field.length()).equals("\n")){
             field = field.substring(0, field.length() - 1);
         }

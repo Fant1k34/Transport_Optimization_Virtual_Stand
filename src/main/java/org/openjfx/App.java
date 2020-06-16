@@ -24,9 +24,9 @@ import javafx.fxml.FXMLLoader;
  */
 public class App extends Application {
     private MethodPotential method = null;
-    private String startLabelText = "Попытка подсчитать";
-    private String finishLabelText = "Попытка подсчитать";
-    private String commonText = "Оптимизация допустима";
+    private String startLabelText = "would be counted if optimization is possible";
+    private String finishLabelText = "would be counted if optimization is possible";
+    private String commonText = "Potentials could be counted";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -52,7 +52,7 @@ public class App extends Application {
         Stage stage = new Stage();
         stage.setWidth(800);
         stage.setHeight(800);
-        Button but = new Button("Оптимизировать");
+        Button but = new Button("Try to optimize");
 
 
         stage.setScene(moveOn(StartPlan, StartCosts, null, null, but));
@@ -66,7 +66,7 @@ public class App extends Application {
             this.finishLabelText = String.valueOf(method.getFinishValue());
         }
         catch (Exception ex){
-            commonText = "Оптимизация невозможна. Потенциалы расставлены случайным образом.";
+            commonText = "Potentials are unavailable to count. It's random";
             System.out.println("Unable to optimize");
         }
 
@@ -77,11 +77,10 @@ public class App extends Application {
         but.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Я сработала");
                 try {
                     // Шаг, который надо показать
                     if (stepNumber.get(0) >= method.getSteps().size()) {
-                        but.setText("Оптимизация максимальна");
+                        but.setText("Optimization is maximum");
                         return;
                     }
                     ArrayList<ArrayList<Integer>> stepToShow = getInformationFromLine.getInfo(method.getSteps().get(stepNumber.get(0)).replace("[", "")
@@ -117,7 +116,7 @@ public class App extends Application {
                     .replace("]", "").replace(",", " "));
         }
         catch (Exception ex){
-            commonText = "Оптимизация невозможна. Потенциалы расставлены случайным образом.";
+            commonText = "Potentials are unavailable to count. It's random";
             X = A;
             Y = B;
         }
@@ -127,8 +126,8 @@ public class App extends Application {
         VBox vbox2 = new VBox();
         VBox vbox3 = new VBox();
         VBox vbox4 = new VBox();
-        vbox3.getChildren().addAll(but, new Label("Начальная стоимость - " + startLabelText), new Label("Конечная стоимость - " + finishLabelText));
-        vbox4.getChildren().addAll(new Label(" 9 "), new Label(commonText));
+        vbox3.getChildren().addAll(but, new Label("Primary cost - " + startLabelText), new Label("Final cost - " + finishLabelText));
+        vbox4.getChildren().addAll(forGraph.drawElement1(A, B, StartPlan), drawTheGraph.drawGraph(A, B, StartPlan), forGraph.drawElement2(A, B, StartPlan), new Label(commonText));
 
         TableView table1 = drawTheTable.drawTable(StartPlan, A, B);
         TableView table2 = drawTheTable.drawTable(StartCosts, X, Y);

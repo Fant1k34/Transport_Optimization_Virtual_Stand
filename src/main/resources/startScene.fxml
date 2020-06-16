@@ -7,26 +7,50 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="848.0" style="-fx-background-color: #9370DB;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.StartSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="848.0" style="-fx-background-color: #AFEEEE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.StartSceneController">
    <children>
-      <Label layoutX="251.0" layoutY="-7.0" prefHeight="106.0" prefWidth="346.0" text="Ввод задачи для оптимизации" textFill="#3e1212">
+      <Label layoutX="243.0" layoutY="-9.0" prefHeight="106.0" prefWidth="364.0" text="Start scene for optimization problem" textFill="#3e1212">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <TextArea id="plan" fx:id="plan" layoutX="14.0" layoutY="110.0" prefHeight="330.0" prefWidth="404.0" text="Матрица поставок" />
-      <Label layoutX="178.0" layoutY="82.0" text="Введи табличку для матриц стоимости. Разделитель столбцов - пробел, для строк - enter" />
-      <TextArea id="costs" fx:id="costs" layoutX="430.0" layoutY="110.0" prefHeight="330.0" prefWidth="404.0" text="Матрица стоимостей" />
-      <Button id="optimizedButton" fx:id="optimizedButton" layoutX="296.0" layoutY="449.0" mnemonicParsing="false" onAction="#getOptimizedSolutionFromThePlan" prefHeight="26.0" prefWidth="254.0" text="Получить решение для оптимизации" />
+      <TextArea id="plan" fx:id="plan" layoutX="14.0" layoutY="110.0" prefHeight="330.0" prefWidth="404.0" text="Start plan">
+         <font>
+            <Font name="Bell MT" size="17.0" />
+         </font></TextArea>
+      <Label layoutX="96.0" layoutY="88.0" text="Incert the table for matrix costs and plan. Delimiter for columns is the whitespace, for rows is enter">
+         <font>
+            <Font name="Bell MT Bold" size="16.0" />
+         </font></Label>
+      <TextArea id="costs" fx:id="costs" layoutX="430.0" layoutY="110.0" prefHeight="330.0" prefWidth="404.0" text="Start costs">
+         <font>
+            <Font name="Bell MT" size="17.0" />
+         </font></TextArea>
+      <Button id="optimizedButton" fx:id="optimizedButton" layoutX="296.0" layoutY="449.0" mnemonicParsing="false" onAction="#getOptimizedSolutionFromThePlan" prefHeight="26.0" prefWidth="254.0" text="Get the solution of transport problem">
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font></Button>
       <TextField id="consumers" fx:id="consumers" layoutX="107.0" layoutY="511.0" prefHeight="26.0" prefWidth="306.0" />
       <TextField id="providers" fx:id="providers" layoutX="507.0" layoutY="511.0" prefHeight="26.0" prefWidth="326.0" />
-      <Label layoutX="14.0" layoutY="511.0" prefHeight="26.0" prefWidth="90.0" text="Потребители A" />
-      <Label layoutX="424.0" layoutY="511.0" prefHeight="26.0" prefWidth="83.0" text="Поставщики B" />
-      <Button id="northWestPlan" fx:id="northWestPlan" layoutX="51.0" layoutY="544.0" mnemonicParsing="false" onAction="#getNorthWestPlan" prefHeight="26.0" prefWidth="312.0" text="Получить решение методом северо-западного угла" />
-      <Button id="minimalCosts" fx:id="minimalCosts" layoutX="466.0" layoutY="544.0" mnemonicParsing="false" onAction="#getMinimalCosts" prefHeight="26.0" prefWidth="318.0" text="Получить решение методом минимальной стоимости" />
+      <Label layoutX="29.0" layoutY="511.0" prefHeight="26.0" prefWidth="77.0" text="Consumers A">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Label>
+      <Label layoutX="439.0" layoutY="511.0" prefHeight="26.0" prefWidth="68.0" text="Providers B">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Label>
+      <Button id="northWestPlan" fx:id="northWestPlan" layoutX="51.0" layoutY="544.0" mnemonicParsing="false" onAction="#getNorthWestPlan" prefHeight="26.0" prefWidth="312.0" text="Get the solution by North-West Angle method">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Button>
+      <Button id="minimalCosts" fx:id="minimalCosts" layoutX="466.0" layoutY="544.0" mnemonicParsing="false" onAction="#getMinimalCosts" prefHeight="26.0" prefWidth="318.0" text="Get the solution by Minimal Costs method">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Button>
       <Label id="infoLine" fx:id="infoLine" layoutX="15.0" layoutY="483.0" prefHeight="18.0" prefWidth="819.0">
          <font>
-            <Font size="14.0" />
+            <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
    </children>

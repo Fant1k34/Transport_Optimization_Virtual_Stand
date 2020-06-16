@@ -48,6 +48,18 @@ public class StartSceneController {
             return;
         }
 
+        if (planData.size() < 2 || costsData.size() < 2){
+            infoLine.setText("The minimal size is 2");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (planData.get(0).size() < 2 || costsData.get(0).size() < 2){
+            infoLine.setText("The minimal size is 2");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
         if (costsData.size() != planData.size()){
             infoLine.setText("Critical Error. Amount of ROWS in PLAN and COSTS do not equals");
             infoLine.setTextFill(Color.web("#FF8C00"));
@@ -135,6 +147,12 @@ public class StartSceneController {
             return;
         }
 
+        if (A == null || B == null){
+            infoLine.setText("Error. CONSUMERS A and PROVIDERS B must be null");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
         if (A.stream().reduce((r, l) -> r*l).get() == 0){
             infoLine.setText("Error. CONSUMERS A must not contain 0 elements");
             infoLine.setTextFill(Color.web("#FF8C00"));
@@ -150,6 +168,12 @@ public class StartSceneController {
         ArrayList<ArrayList<Integer>> costsData = getInformationFromLine.getInfo(text3);
         if (costsData == null) {
             infoLine.setText("Critical Error. Check your COSTS");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (A.size() < 2 || B.size() < 2){
+            infoLine.setText("The minimal size is 2");
             infoLine.setTextFill(Color.web("#FF8C00"));
             return;
         }
@@ -213,6 +237,18 @@ public class StartSceneController {
         }
         catch (Exception e){
             infoLine.setText("Error. CONSUMERS A and PROVIDERS B must be a number divided by whitespace");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (A == null || B == null){
+            infoLine.setText("Error. CONSUMERS A and PROVIDERS B must be null");
+            infoLine.setTextFill(Color.web("#FF8C00"));
+            return;
+        }
+
+        if (A.size() < 2 || B.size() < 2){
+            infoLine.setText("The minimal size is 2");
             infoLine.setTextFill(Color.web("#FF8C00"));
             return;
         }
