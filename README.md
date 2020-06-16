@@ -23,16 +23,16 @@
 ## Repo
 - https://github.com/Fant1k34/transportOptimization
 ## How to use the project
-- There are two different ways to use this project
- - Write your data into these two text areas
- - Left text area is for plan
- - Right text area is for matrix costs
- - Every symbol must be divided by a whitespace (to add new column) or enter (to add a new row)
- - Press the butten to optimize
-- The another one
- - Write your data to consumers A and providers B
- - Write your matrix costs to right text area
- - Click the right button
- - The bottom left button give a solution by North-West method
- - The bottom righ button give a solution by Minimal Costs method
+- **There are two different ways to use this project**
+  - Write your data into these two text areas
+  - **Left** text area is for plan
+  - **Right** text area is for matrix costs
+  - Every symbol must be divided by a whitespace (to add new column) or enter (to add a new row)
+  - Press the butten to optimize
+- **The another one**
+  - Write your data to consumers A and providers B
+  - Write your matrix costs to right text area
+  - Click the button
+  - The bottom **left** button give a solution by **North-West method**
+  - The bottom **righ** button give a solution by **Minimal Costs method**
 ![Что-то пошло не так](description/first.png "Главное меню")
